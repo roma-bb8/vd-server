@@ -1,0 +1,2424 @@
+{
+	"variables": [],
+	"info": {
+		"name": "vd",
+		"_postman_id": "edb63361-a713-f5a7-5df6-861dcf8b640c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin: Profession",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/admin/profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profession_id\", jsonData.id);",
+									"    postman.setNextRequest(\"put/api/admin/profession\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Тест\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/admin/profession",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profession_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/admin/profession/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{profession_id}},\n  \"name\": \"Тест тест\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/admin/profession/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profession_id\", 0);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession/{{profession_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/profession/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"profession_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/admin/professions\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession/{{profession_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/professions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"del/api/admin/profession/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/professions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/admin/profession/binding",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession/binding",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profession_id\": {{profession_id}},\n  \"service_ids\": [{{service_id}}],\n  \"protocol_ids\": [{{protocol_id}}]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/profession/binding",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/profession/binding",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"profession_id\": {{profession_id}},\n  \"protocol_ids\": [{{protocol_id}}],\n  \"service_ids\": [{{service_id}}]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin: Protocol",
+			"description": "",
+			"item": [
+				{
+					"name": "put/api/admin/protocol",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"protocol_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/admin/protocol/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/protocol",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{protocol_id}},\n  \"name\": \"One protocol\",\n  \"type\": \"TYPE_SAMPLE\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/protocol/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"protocol_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/admin/protocols\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/protocol/{{protocol_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/protocols",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/protocols",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin: Service",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/admin/service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"service_id\", jsonData.id);",
+									"    postman.setNextRequest(\"put/api/admin/service\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/service",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test\",\n  \"price\": 21.3\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/admin/service",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"service_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/admin/service/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/service",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{service_id}},\n  \"name\": \"One\",\n  \"price\": 21.4\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/admin/service/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"service_id\", 0);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/service/{{service_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/service/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"service_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/admin/services\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/service/{{service_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"del/api/admin/service/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/services",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"test\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin: Worker",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/admin/worker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"worker_id\", jsonData.id);",
+									"    postman.setNextRequest(\"put/api/admin/worker\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/worker",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first\": \"Сильвестр\",\n  \"second\": \"Георгиевич\",\n  \"last\": \"Тарский\",\n  \"sex\": true,\n  \"birthday\": \"1993-05-05\",\n  \"email\": {{email}},\n  \"phone\": \"+380684620431\",\n  \"profession_id\": {{profession_id}},\n  \"status\": true,\n  \"roles\": [\"ROLE_NONE\", \"ROLE_ADMIN\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/admin/worker",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"worker_id\", jsonData.id);",
+									"    postman.setNextRequest(\"patch/api/admin/worker/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/worker",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{worker_id}},\n  \"first\": \"Кларисса\",\n  \"second\": \"Тимофеевна\",\n  \"last\": \"Сидорова\",\n  \"sex\": false,\n  \"birthday\": \"1970-12-23\",\n  \"email\": {{email}},\n  \"phone\": \"+380668283695\",\n  \"profession_id\": {{profession_id}},\n  \"status\": true,\n  \"roles\": [\"ROLE_ADMIN\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "patch/api/admin/worker/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/api/admin/worker/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/worker/{{worker_id}}",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/admin/worker/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"worker_id\", 0);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/worker/{{worker_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/worker/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"worker_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/admin/workers\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/worker/{{worker_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/admin/workers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"del/api/admin/worker/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/admin/workers",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor: Info",
+			"description": "",
+			"item": [
+				{
+					"name": "put/api/doctor/patient/note",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/patient/note",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{patient_id}},\n  \"note\": \"Алохха\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/reception/end/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"put/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/end/{{reception_id}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/protocol/list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/protocol/list",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/reception/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"put/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/{{reception_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/receptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/receptions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/patient/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"put/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/patient/{{patient_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/receptions/history/patient/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"put/doctor/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/receptions/history/patient/{{patient_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor: Reception",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/doctor/reception/protocol",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/api/doctor/reception/protocol/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/protocol",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reception_id\": {{reception_id}},\n  \"protocol_id\": {{protocol_id}},\n  \"asd\": 2,\n  \"sdxz\": \"dsfdsfdf\",\n  \"cvbcb\": \"sdsadaada\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/doctor/reception/protocol/{id}/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/protocol/{{reception_id}}/{{protocol_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/doctor/reception/protocol/{id}/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"del/api/doctor/reception/protocol/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/protocol/{{reception_id}}/{{protocol_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "post/api/doctor/reception/analyzes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/api/doctor/reception/analyzes/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/analyzes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "{{reception_id}}",
+									"type": "text",
+									"enabled": true
+								},
+								{
+									"key": "analyzes_1",
+									"type": "file",
+									"enabled": true,
+									"src": "octicons_f05c(0)_32.png"
+								},
+								{
+									"key": "analyzes_2",
+									"type": "file",
+									"enabled": true,
+									"src": "octicons_f05c(0)_14.png"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/doctor/reception/analyzes/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/doctor/reception/analyzes/{{reception_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nurse: Info",
+			"description": "",
+			"item": [
+				{
+					"name": "get/api/nurse/doctors",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setNextRequest(\"get/api/nurse/services\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/doctors",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/services",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/services",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/busy/time/{id}/{date}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setNextRequest(\"get/api/nurse/services\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/busy/time/{{worker_id}}/{{date}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/professions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/professions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/reception/paid/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception/paid/{{reception_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nurse: Patient",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/nurse/patient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"patient_id\", jsonData.id);",
+									"    postman.setNextRequest(\"put/api/admin/patient\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/patient",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first\": \"Селиверст\",\n  \"second\": \"Валентинович\",\n  \"last\": \"Сорокин\",\n  \"sex\": true,\n  \"birthday\": \"1988-07-03\",\n  \"address\": \"ул. Глинки, дом 10, квартира 268\",\n  \"phone\": \"380978804142\",\n  \"note\": null\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/nurse/patient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"patient_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/nurse/patient/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/patient",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{patient_id}},\n  \"first\": \"Евлампий\",\n  \"second\": \"Георгиевич\",\n  \"last\": \"Жуков\",\n  \"sex\": true,\n  \"birthday\": \"1970-08-01\",\n  \"address\": \"ул. Барболина, дом 14, квартира 186\",\n  \"phone\": \"380674267378\",\n  \"note\": \"Оранжевый, JukovEvlampiy78, 6rSjCAoTmrrW\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/patient/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"patient_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/nurse/patients\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/patient/{{patient_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"del/api/nurse/patient/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/patients",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/nurse/patient/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"patient_id\", 0);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/patient/{{patient_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Nurse: Reception",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/nurse/reception",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 201\"] = responseCode.code === 201;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 201) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"reception_id\", jsonData.id);",
+									"    postman.setNextRequest(\"put/api/admin/patient\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"patient_id\": {{patient_id}},\n  \"worker_id\": {{worker_id}},\n  \"service_ids\": [{{service_id}}],\n  \"time\": \"2017-10-30 13:00:00\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/nurse/reception",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"reception_id\", jsonData.reception_id);",
+									"    postman.setNextRequest(\"get/api/nurse/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{reception_id}},\n  \"patient_id\": {{patient_id}},\n  \"worker_id\": {{worker_id}},\n  \"service_ids\": [{{service_id}}],\n  \"time\": \"2017-10-30 13:00:00\",\n  \"paid\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "del/api/nurse/reception/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 204\"] = responseCode.code === 204;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 204) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"reception_id\", 0);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception/{{reception_id}}",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/reception/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"reception_id\", jsonData.id);",
+									"    postman.setNextRequest(\"get/api/nurse/receptions\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception/{{reception_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/receptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    postman.setNextRequest(\"get/api/nurse/reception/{id}/{date}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/receptions",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "get/api/nurse/reception/paid/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"reception_id\", jsonData.reception_id);",
+									"    postman.setNextRequest(\"get/api/nurse/reception/{id}\");",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/nurse/reception/paid/{{reception_id}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": {{reception_id}},\n  \"patient_id\": {{patient_id}},\n  \"worker_id\": {{worker_id}},\n  \"service_ids\": [{{service_id}}],\n  \"time\": \"2017-10-30 13:00:00\",\n  \"paid\": false\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"description": "",
+			"item": [
+				{
+					"name": "post/api/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"token\", \"Bearer \" + jsonData.token);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"{{login}}\",\n  \"password\": \"{{password}}\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "put/api/update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"/* global info */",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Response time is less than 200ms\"] = responseTime < 200;",
+									"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\") === 'application/json';",
+									"",
+									"/* next middleware */",
+									"if (responseCode.code === 200) { ",
+									"    /* clear and init var */",
+									"    var jsonData = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"login\", jsonData.phone);",
+									"    postman.setEnvironmentVariable(\"email\", jsonData.email);",
+									"    postman.setNextRequest(null);",
+									"} else { ",
+									"    postman.setEnvironmentVariable(\"error\", jsonData.error);",
+									"    postman.setNextRequest(null);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{host}}/api/update",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"first\": \"СеливАН\",\n  \"second\": \"ЕвгенЬевич\",\n  \"last\": \"ЛеоНТьев\",\n  \"sex\": true,\n  \"birthday\": \"1969-12-08\",\n  \"phone\": \"{{login}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"password_new\": \"{{password}}\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

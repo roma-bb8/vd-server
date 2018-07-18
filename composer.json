@@ -1,0 +1,55 @@
+{
+  "name": "jungle-studio/vd",
+  "description": "Это северная часть внутренней программы для медицинского центра ВАЛЕО DIAGNOSTICS.",
+  "version": "2.0.0",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Baranenko Roman",
+      "email": "sommelier.jungle@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "silex/silex": "^2.0",
+    "monolog/monolog": "^1.21",
+    "doctrine/dbal": "^2.5",
+    "swiftmailer/swiftmailer": "^5.4",
+    "symfony/config": "^3.1",
+    "symfony/security": "^3.1",
+    "symfony/validator": "^3.1",
+    "symfony/translation": "^3.1",
+    "firebase/php-jwt": "^4.0",
+    "twig/twig": "^1.27",
+    "symfony/twig-bridge": "^3.1",
+    "gabordemooij/redbean": "^4.3",
+    "egulias/email-validator": "^2.1",
+    "symfony/debug": "^3.2",
+    "lokhman/silex-config": "^2.0.2",
+    "cnam/security-jwt-service-provider": "^2.1",
+    "dflydev/doctrine-orm-service-provider": "^2.0",
+    "symfony/class-loader": "^3.2",
+    "intervention/image": "^2.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "postmen/sdk-php": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Acme\\Src\\": "src/",
+      "Acme\\": "app/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Acme\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "scripts": {
+    "app-test": "phpunit --bootstrap ./vendor/autoload.php tests",
+    "app-run": "php -S localhost:8080 -t web ./web/index.php"
+  }
+}

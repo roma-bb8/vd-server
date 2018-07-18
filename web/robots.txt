@@ -1,0 +1,6 @@
+# Created by using https://gitlab.com/sommelier.jungle/generator
+# http://www.robotstxt.org
+
+# Disable all content scanning
+User-agent: *
+Disallow: /
